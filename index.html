@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Rock/Paper/Scissor</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    </head>
+    <body>
+        <div id="divTitle">
+            <header id="gameTitle">ROCK - PAPER - SCISSOR</header>
+        </div>
+        <div id="dashboard">
+            <div id="rockOption">
+                <button id="rockButton" class="buttonAction" value="rock">Rock</button>
+            </div>
+            <div id="paperOption">
+                <button id="paperButton" class="buttonAction" value="paper">Paper</button>
+            </div>
+            <div id="scissorOption">
+                <button id="scissorButton" class="buttonAction" value="scissor">Scissor</button>
+            </div>
+        </div>
+        <div id="divScore">
+            <div id="playerImage" class="scoreImage"><img src="https://d2jv9003bew7ag.cloudfront.net/uploads/Jaebum-Joo.jpg" width="40px" height="40px"></div>
+            <div id="playerScore" class="scoreBox">0</div>
+            <div id="scoreDivision">:</div>
+            <div id="computerScore" class="scoreBox">0</div>
+            <div id="computerImage" class="scoreImage"><img src="https://www.clipartkey.com/mpngs/m/7-75907_pixel-art-computer-png-clipart-png-download-computer.png" width="40px" height="40px"></div>
+        </div>
+        <div id="divRoundResult">
+            <div id="roundResult"></div>
+        </div>
+        <div id="displayWinner">
+            <div id="announceWinner"></div>
+        </div>
+        <div id="divNewGameButton">
+            <button id="newGameButton">New Game</button>
+        </div>
+
+        <script>
+            function computerPlay() {
+            // returns computer choice
+                let possibilities = ["rock","paper","scissor"];
+                let selection = possibilities[Math.floor(Math.random() * possibilities.length)];
+                return selection;
+            }
+            function playerPlay() {
+            //validates the input of the player and returns selection
+            //obsolete
+                let inputText = prompt("Make your move:").toLowerCase();
+                if (inputText === "rock" || inputText === "paper" || inputText === "scissor") {
+                    return inputText;
+                } else {
+                    console.log("That's not an option...")
+                }
+            }
+            function playRound(playerSelection, computerSelection) {
+	        // Result possibilities
+                let result = "";
+                let winner = "";
+                
+                if (playerSelection === "rock" && computerSelection === "paper"){
+                    winner = "computerWins"
+                    result = "Player loses... Paper beats rock!"
+                } else if (playerSelection === "rock" && computerSelection === "scissor"){
+                    winner = "playerWins"
+                    result = "Player wins! Rock beats scissor!"
+                } else if (playerSelection === "paper" && computerSelection === "rock"){
+                    winner = "playerWins"
+                    result = "Player wins! Paper beats scissor!"
+                } else if (playerSelection === "paper" && computerSelection === "scissor"){
+                    winner = "computerWins"
+                    result = "Player loses... Scissor beats paper!"
+                } else if (playerSelection === "scissor" && computerSelection === "rock"){
+                    winner = "computerWins"
+                    result = "Player loses... Rock beats scissor!"
+                } else if (playerSelection === "scissor" && computerSelection === "paper"){
+                    winner = "playerWins"
+                    result = "Player wins! Scissor beats paper!"
+                } else {
+                    winner = "draw"
+                    result = "It's a draw!"
+                }
+                return [winner, result]
+            }
+
+            function stopCounter(winner) { 
+            //disables the buttons and announces the winner
+                if (playerCount===5 || computerCount===5) {
+                console.log("we have a winner!")
+                    if (winner === 'playerWins') {
+                        gameOn = false;
+                        return document.getElementById('announceWinner').innerHTML = "The PLAYER wins!"
+                    } else {
+                        gameOn = false;
+                        return document.getElementById('announceWinner').innerHTML = "The COMPUTER wins..."
+                    }
+                }
+            }
+            document.getElementById('newGameButton').onclick = function() {
+            //resets the score and enables buttons    
+                playerCount = 0;
+                computerCount = 0;
+                playerScoreBox.innerHTML = '0';
+                computerScoreBox.innerHTML = '0';
+                gameOn = true;
+                document.getElementById('announceWinner').innerHTML = ""
+                document.getElementById('roundResult').innerHTML = "";
+            }
+
+            function whoScores(whoWins,theResult) {
+            //add +1 to the scorebox of the winner of the round
+                if (whoWins==='playerWins') {
+                    playerCount += 1
+                    playerScoreBox.innerHTML = Number(playerScoreBox.innerHTML) + 1
+                }
+                else if (whoWins==='computerWins') {
+                    computerCount += 1
+                    computerScoreBox.innerHTML = Number(computerScoreBox.innerHTML) + 1 ;
+                }
+                document.getElementById('roundResult').innerHTML = theResult;
+                stopCounter(whoWins)
+                }
+
+            let gameOn = true;
+            let playerCount = 0
+            let computerCount = 0
+            let playerScoreBox = document.getElementById("playerScore")
+            let computerScoreBox = document.getElementById("computerScore")
+            document.getElementById('rockButton').onclick = function() {
+                if (gameOn===true) {
+                    game = playRound('rock', computerPlay())
+                    whoScores(game[0],game[1]);
+                }
+            }
+            document.getElementById('paperButton').onclick = function() {
+                if (gameOn===true) {
+                    game = playRound('paper', computerPlay())
+                    whoScores(game[0],game[1]);
+                }
+            }
+            document.getElementById('scissorButton').onclick = function() {
+                if (gameOn===true) {
+                    game = playRound('scissor', computerPlay())
+                    whoScores(game[0],game[1]);
+                }
+            }
+
+        </script>
+    </body>
+</html>
