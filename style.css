@@ -31,9 +31,20 @@ button {
     
 }
 
+body {
+    justify-content: center;
+    align-content: center;
+}
+
+header {
+    margin-top: 50px;
+    font-size: x-large;
+    text-align: center;
+}
+
 #dashboard {
     height: 100px;
-    margin-top: 50px;
+    margin-top: 20px;
     display: flex;
     flex: 1;
     align-items: center;
@@ -96,6 +107,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 40px;
 }
 
 #divRoundResult {
@@ -105,4 +117,10 @@ button {
     font-size: large;
     align-items: center;
     justify-content: center;
+}
+
+.choice {
+    font-size: large;
+    padding: 0px 10px 0px 10px;
+    
 }

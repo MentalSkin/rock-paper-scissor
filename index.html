@@ -10,6 +10,7 @@
         <div id="divTitle">
             <header id="gameTitle">ROCK - PAPER - SCISSOR</header>
         </div>
+        <header>Play a 5 round game with the Computer</header>
         <div id="dashboard">
             <div id="rockOption">
                 <button id="rockButton" class="buttonAction" value="rock">Rock</button>
@@ -22,11 +23,13 @@
             </div>
         </div>
         <div id="divScore">
+            <div id="playerChoice" class="choice"></div>
             <div id="playerImage" class="scoreImage"><img src="https://d2jv9003bew7ag.cloudfront.net/uploads/Jaebum-Joo.jpg" width="40px" height="40px"></div>
             <div id="playerScore" class="scoreBox">0</div>
             <div id="scoreDivision">:</div>
             <div id="computerScore" class="scoreBox">0</div>
             <div id="computerImage" class="scoreImage"><img src="https://www.clipartkey.com/mpngs/m/7-75907_pixel-art-computer-png-clipart-png-download-computer.png" width="40px" height="40px"></div>
+            <div id="computerChoice" class="choice"></div>
         </div>
         <div id="divRoundResult">
             <div id="roundResult"></div>
@@ -82,6 +85,8 @@
                     winner = "draw"
                     result = "It's a draw!"
                 }
+                playerChoice.innerHTML = playerSelection.toUpperCase();
+                computerChoice.innerHTML = computerSelection.toUpperCase();
                 return [winner, result]
             }
 
@@ -104,6 +109,8 @@
                 computerCount = 0;
                 playerScoreBox.innerHTML = '0';
                 computerScoreBox.innerHTML = '0';
+                playerChoice.innerHTML = '';
+                computerChoice.innerHTML = '';
                 gameOn = true;
                 document.getElementById('announceWinner').innerHTML = ""
                 document.getElementById('roundResult').innerHTML = "";
@@ -128,6 +135,9 @@
             let computerCount = 0
             let playerScoreBox = document.getElementById("playerScore")
             let computerScoreBox = document.getElementById("computerScore")
+            let playerChoice = document.getElementById("playerChoice")
+            let computerChoice = document.getElementById("computerChoice")
+
             document.getElementById('rockButton').onclick = function() {
                 if (gameOn===true) {
                     game = playRound('rock', computerPlay())
