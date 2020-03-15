@@ -78,7 +78,7 @@ header {
 
 #scoreDivision {
     height: 40px;
-    width: 5px;
+    width: 15px;
     margin: 2px 2px 2px 2px;
     justify-content: center;
     font-size: xx-large;
@@ -122,5 +122,11 @@ header {
 .choice {
     font-size: large;
     padding: 0px 10px 0px 10px;
-    
+    width: 100px
+}
+#playerChoice {
+    text-align: right;
+}
+#computerChoice {
+    text-align: left;
 }
