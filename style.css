@@ -1,6 +1,6 @@
 html {
     font-size: 10px;
-    background: aqua;
+    background: #40E0D0	;
 }
 button {
     font-size: large;
@@ -60,8 +60,8 @@ header {
     justify-content: center;
 }
 .scoreImage {
-    height: 40px;
-    width: 40px;
+    height: 80px;
+    width: 80px;
     border: 2px solid black;
     margin: 2px 2px 2px 2px;
     justify-content: center;
